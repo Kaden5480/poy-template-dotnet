@@ -14,7 +14,7 @@ namespace TemplateMod {
 #if (modmenu)
         [Field("Enabled")]
 #endif
-        internal ConfigEntry<bool> enabled { get; private set; }
+        internal static ConfigEntry<bool> enabled { get; private set; }
 
         /**
          * <summary>

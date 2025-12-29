@@ -1,6 +1,10 @@
 #if (logger)
 using System;
 #endif
+#if (modmenu)
+using System.Linq;
+#endif
+
 using BepInEx;
 #if (modmenu)
 using HarmonyLib;
@@ -13,7 +17,7 @@ using UILib.Patches;
 using UnityEngine.SceneManagement;
 
 namespace TemplateMod {
-    [BepInPlugin("com.github.Kaden5480.poy-template-mod", "Template Mod", PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin("com.github.Author.poy-template-mod", "Template Mod", PluginInfo.PLUGIN_VERSION)]
     internal class Plugin : BaseUnityPlugin {
         private static Plugin instance;
 
@@ -29,8 +33,8 @@ namespace TemplateMod {
             TemplateMod.Config.Init(this.Config);
 #if (uilib)
 
+            // Initialize your UI here
             UIRoot.onInit.AddListener(() => {
-                // Initializes UI
             });
 
             // Runs on scene loads (built-in and custom in normal play by default)
@@ -48,6 +52,7 @@ namespace TemplateMod {
             SceneManager.sceneUnloaded += OnSceneUnloaded;
 #endif
 #if (modmenu)
+
             // Register with Mod Menu as an optional dependency
             if (AccessTools.AllAssemblies().FirstOrDefault(
                     a => a.GetName().Name == "ModMenu"
@@ -129,6 +134,7 @@ namespace TemplateMod {
          * <param name="message">The message to log</param>
          */
         internal static void LogDebug(string message) {
+//-:cnd:noEmit
 #if DEBUG
             if (instance == null) {
                 Console.WriteLine($"[Debug] TemplateMod: {message}");
@@ -141,6 +147,7 @@ namespace TemplateMod {
                 instance.Logger.LogDebug(message);
             }
 #endif
+//+:cnd:noEmit
         }
 
         /**
