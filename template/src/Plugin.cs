@@ -1,9 +1,13 @@
 #if (logger)
 using System;
 #endif
+#if (modmenu)
+using System.Linq;
+#endif
 
 using BepInEx;
 #if (modmenu)
+using HarmonyLib;
 using ModMenu;
 #endif
 #if (uilib)
@@ -13,6 +17,15 @@ using UILib.Patches;
 using UnityEngine.SceneManagement;
 
 namespace TemplateMod {
+#if (uilib)
+    [BepInDependency("com.github.Kaden5480.poy-ui-lib")]
+#endif
+#if (modmenu)
+    [BepInDependency(
+        "com.github.Kaden5480.poy-mod-menu",
+        BepInDependency.DependencyFlags.SoftDependency
+    )]
+#endif
     [BepInPlugin("com.github.Author.poy-template-mod", "Template Mod", PluginInfo.PLUGIN_VERSION)]
     internal class Plugin : BaseUnityPlugin {
         private static Plugin instance;
@@ -49,13 +62,29 @@ namespace TemplateMod {
 #endif
 #if (modmenu)
 
-            // Register with Mod Menu
+            // Register with Mod Menu as an optional dependency
+            if (AccessTools.AllAssemblies().FirstOrDefault(
+                    a => a.GetName().Name == "ModMenu"
+                ) != null
+            ) {
+                Register();
+            }
+#endif
+        }
+#if (modmenu)
+
+        /**
+         * <summary>
+         * Registers with Mod Menu.
+         * </summary>
+         */
+        private void Register() {
             ModInfo info = ModManager.Register(this);
             info.Add(typeof(TemplateMod.Config));
             // Add extra stuff here
             // See: https://kaden5480.github.io/docs/mod-menu/api/ModMenu.ModInfo.html
-#endif
         }
+#endif
 #if (!uilib)
 
         /**
