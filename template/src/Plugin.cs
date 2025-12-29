@@ -24,18 +24,23 @@ namespace TemplateMod {
          */
         private void Awake() {
             instance = this;
+
+            // Initialize the config
+            TemplateMod.Config.Init(this.Config);
 #if (uilib)
 
             UIRoot.onInit.AddListener(() => {
                 // Initializes UI
             });
 
+            // Runs on scene loads (built-in and custom in normal play by default)
             SceneLoads.AddLoadListener((Scene scene) => {
-                // Runs on scene loads
+                Cache.FindObjects();
             });
 
+            // Runs on scene unloads (built-in and custom in normal play by default)
             SceneLoads.AddUnloadListener((Scene scene) => {
-                // Runs on scene unloads
+                Cache.Clear();
             });
 #else
 
@@ -61,6 +66,7 @@ namespace TemplateMod {
          */
         private void Register() {
             ModInfo info = ModManager.Register(this);
+            info.Add(typeof(TemplateMod.Config));
             // Add extra stuff here
             // See: https://kaden5480.github.io/docs/mod-menu/api/ModMenu.ModInfo.html
         }
@@ -85,6 +91,7 @@ namespace TemplateMod {
          * <param name="mode">The mode the scene was loaded with</param>
          */
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+            Cache.FindObjects();
         }
 
         /**
@@ -94,6 +101,7 @@ namespace TemplateMod {
          * <param name="scene">The scene which unloaded</param>
          */
         private void OnSceneUnloaded(Scene scene) {
+            Cache.Clear();
         }
 
         /**
