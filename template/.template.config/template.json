@@ -22,12 +22,14 @@
       "valueTransform": "identity",
       "replaces": "Template Mod"
     },
+
     "mod-name-pascal": {
       "type": "derived",
       "valueSource": "name",
       "valueTransform": "pascalCase",
       "replaces": "TemplateMod"
     },
+
     "mod-name-kebab": {
       "type": "derived",
       "valueSource": "name",
@@ -49,7 +51,7 @@
       "type": "parameter",
       "datatype": "string",
       "displayName": "Mod Author",
-      "description": "The name of the mod's author (your name).",
+      "description": "The name of the mod's author (e.g. your GitHub username).",
       "replaces": "Author"
     },
 
@@ -60,6 +62,14 @@
       "defaultValue": false,
       "displayName": "Logger",
       "description": "Whether to add extra logging functionality."
+    },
+
+    "readme": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": true,
+      "displayName": "Create README.md",
+      "description": "Whether a README.md should also be created."
     },
 
     // Optional dependencies
@@ -88,6 +98,12 @@
           "condition": "!(logger)",
           "exclude": [
             "src/Logger.cs"
+          ]
+        },
+        {
+          "condition": "!(readme)",
+          "exclude": [
+            "README.md"
           ]
         }
       ]
