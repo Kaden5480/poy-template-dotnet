@@ -13,30 +13,35 @@
     "type": "project"
   },
 
-  "sourceName": "TemplateMod",
-  "preferNameDirectory": true,
-
   "symbols": {
 
     // Mod name configuration
     "mod-name": {
-      "type": "parameter",
-      "datatype": "string",
-      "displayName": "Mod Name",
-      "description": "The display name of your mod.",
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "identity",
       "replaces": "Template Mod"
     },
     "mod-name-pascal": {
       "type": "derived",
-      "valueSource": "mod-name",
+      "valueSource": "name",
       "valueTransform": "pascalCase",
       "replaces": "TemplateMod"
     },
     "mod-name-kebab": {
       "type": "derived",
-      "valueSource": "mod-name",
+      "valueSource": "name",
       "valueTransform": "kebabCase",
       "replaces": "template-mod"
+    },
+
+    // csproj name
+    "mod-name-csproj": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "pascalCase",
+      "replaces": "TemplateMod",
+      "fileRename": "TemplateMod"
     },
 
     // Mod author
@@ -93,6 +98,11 @@
   "forms": {
     "titleCase": {
       "identifier": "titleCase"
+    },
+    "identity": {
+      "identifier": "replace",
+      "pattern": "",
+      "replacement": ""
     },
     "invalidChars": {
       "identifier": "replace",
