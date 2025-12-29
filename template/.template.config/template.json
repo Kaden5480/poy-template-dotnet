@@ -13,6 +13,7 @@
     "type": "project"
   },
 
+  "sourceName": "TemplateMod",
   "preferNameDirectory": true,
 
   "symbols": {
