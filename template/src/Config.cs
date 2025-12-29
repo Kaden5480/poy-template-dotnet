@@ -1,6 +1,6 @@
 using BepInEx.Configuration;
 #if (modmenu)
-using ModMenu.Config
+using ModMenu.Config;
 #endif
 
 namespace TemplateMod {
