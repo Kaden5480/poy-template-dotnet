@@ -1,13 +1,9 @@
 #if (logger)
 using System;
 #endif
-#if (modmenu)
-using System.Linq;
-#endif
 
 using BepInEx;
 #if (modmenu)
-using HarmonyLib;
 using ModMenu;
 #endif
 #if (uilib)
@@ -53,29 +49,13 @@ namespace TemplateMod {
 #endif
 #if (modmenu)
 
-            // Register with Mod Menu as an optional dependency
-            if (AccessTools.AllAssemblies().FirstOrDefault(
-                    a => a.GetName().Name == "ModMenu"
-                ) != null
-            ) {
-                Register();
-            }
-#endif
-        }
-#if (modmenu)
-
-        /**
-         * <summary>
-         * Registers with Mod Menu.
-         * </summary>
-         */
-        private void Register() {
+            // Register with Mod Menu
             ModInfo info = ModManager.Register(this);
             info.Add(typeof(TemplateMod.Config));
             // Add extra stuff here
             // See: https://kaden5480.github.io/docs/mod-menu/api/ModMenu.ModInfo.html
-        }
 #endif
+        }
 #if (!uilib)
 
         /**
