@@ -61,7 +61,7 @@
     "modmenu": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": false,
+      "defaultValue": true,
       "displayName": "Mod Menu Support",
       "description": "Whether this mod should integrate with Mod Menu."
     },
@@ -69,7 +69,7 @@
     "uilib": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": false,
+      "defaultValue": true,
       "displayName": "UILib Support",
       "description": "Whether this mod should use UILib."
     }
