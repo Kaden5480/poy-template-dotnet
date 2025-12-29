@@ -22,7 +22,7 @@
       "type": "parameter",
       "datatype": "string",
       "displayName": "Mod Name",
-      "description": "The display name of your mod",
+      "description": "The display name of your mod.",
       "replaces": "Template Mod"
     },
     "mod-name-pascal": {
@@ -43,7 +43,7 @@
       "type": "parameter",
       "datatype": "string",
       "displayName": "Mod Author",
-      "description": "The name of the mod's author (your name)",
+      "description": "The name of the mod's author (your name).",
       "replaces": "Author"
     },
 
@@ -53,7 +53,7 @@
       "datatype": "bool",
       "defaultValue": false,
       "displayName": "Logger",
-      "description": "Whether to add extra logging functionality"
+      "description": "Whether to add extra logging functionality."
     },
 
     // Optional dependencies
@@ -62,7 +62,7 @@
       "datatype": "bool",
       "defaultValue": false,
       "displayName": "Mod Menu Support",
-      "description": "Whether this mod should integrate with Mod Menu"
+      "description": "Whether this mod should integrate with Mod Menu."
     },
 
     "uilib": {
@@ -70,7 +70,7 @@
       "datatype": "bool",
       "defaultValue": false,
       "displayName": "UILib Support",
-      "description": "Whether this mod should use UILib"
+      "description": "Whether this mod should use UILib."
     }
   },
 
