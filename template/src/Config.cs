@@ -9,7 +9,7 @@ namespace TemplateMod {
      * Holds the config for this mod.
      * </summary>
      */
-    internal class Config {
+    internal static class Config {
         // Example config entry
 #if (modmenu)
         [Field("Enabled")]
