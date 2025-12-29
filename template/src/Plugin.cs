@@ -38,6 +38,7 @@ namespace TemplateMod {
                 // Runs on scene unloads
             });
 #else
+
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
 #endif
