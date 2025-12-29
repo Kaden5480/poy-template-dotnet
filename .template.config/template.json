@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+
+  "author": "Kaden5480",
+  "identity": "com.github.Kaden5480.poy-template-dotnet",
+  "classifications": [ "Library" ],
+
+  "name": "Peaks of Yore Mod",
+  "shortName": "poy-mod",
+
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+
+  "preferNameDirectory": true,
+
+  "symbols": {
+
+    // Mod name configuration
+    "mod-name": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "Mod Name",
+      "description": "The display name of your mod",
+      "replaces": "Template Mod"
+    },
+    "mod-name-pascal": {
+      "type": "derived",
+      "valueSource": "mod-name",
+      "valueTransform": "pascalCase",
+      "replaces": "TemplateMod"
+    },
+    "mod-name-kebab": {
+      "type": "derived",
+      "valueSource": "mod-name",
+      "valueTransform": "kebabCase",
+      "replaces": "template-mod"
+    },
+
+    // Mod author
+    "mod-author": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "Mod Author",
+      "description": "The name of the mod's author (your name)",
+      "replaces": "Author"
+    },
+
+    // Optional features
+    "logger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "displayName": "Logger",
+      "description": "Whether to add extra logging functionality"
+    },
+
+    // Optional dependencies
+    "modmenu": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "displayName": "Mod Menu Support",
+      "description": "Whether this mod should integrate with Mod Menu"
+    },
+
+    "uilib": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false,
+      "displayName": "UILib Support",
+      "description": "Whether this mod should use UILib"
+    }
+  },
+
+  // Optional files
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "!(logger)",
+          "exclude": [
+            "src/Logger.cs"
+          ]
+        }
+      ]
+    }
+  ],
+
+  // String transforms
+  "forms": {
+    "titleCase": {
+      "identifier": "titleCase"
+    },
+    "invalidChars": {
+      "identifier": "replace",
+      "pattern": "([\\-_\\.\\ ])",
+      "replacement": ""
+    },
+    "pascalCase": {
+      "identifier": "chain",
+      "steps": [
+        "titleCase",
+        "invalidChars"
+      ]
+    }
+  }
+
+}
+// vim: set et sw=2 ts=2:
